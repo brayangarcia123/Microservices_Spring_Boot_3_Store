@@ -1,0 +1,45 @@
+version: '3'
+services:
+  ###PosgreSQL para inventory
+  db-inventory:
+    container_name: db-inventory
+    image: postgres:15.3
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ms_inventory
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5431:5431
+    expose:
+      - 5431
+    command: -p 5431
+
+  ###PosgreSQL para products
+  db-products:
+    container_name: db-products
+    image: postgres:15.3
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ms_product
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    command: -p 5432
+
+  ###MySQL para orders
+  db-orders:
+    container_name: db-orders
+    image: mysql:8.3.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ms_orders
+      MYSQL_USER: root
+      MYSQL_PASSWORD: x
+    ports:
+      - 3305:3305
+    expose:
+      - 3305
